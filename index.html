@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohan Solutions | Digital Strategy & Automation</title>
+  
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Add gsap for smooth animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Add Lottie animation library -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <!-- Calendly integration -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</head>
+<body>
+  <!-- Noise overlay for texture -->
+  <div class="noise-overlay"></div>
+
+  <!-- Gradient background -->
+  <div class="gradient-bg">
+    <div class="gradient-shape shape1"></div>
+    <div class="gradient-shape shape2"></div>
+  </div>
+  
+  <!-- Header with simplified menu -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/2150172308/settings_images/j0Ize5epSQiqeKk8yUW8_Logo-yellow.png" alt="Mohan Logo">
+      </a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <!-- Simplifying to just one button -->
+          <li><a href="#" class="nav-link book-call-link" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mohan94/15min'});return false;">Book a Call</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge animate-item">
+          <span>Digital Strategist & Automation Expert</span>
+        </div>
+        <h1 class="hero-title animate-item">
+          Elevate Your <span class="highlight">Digital Strategy</span> to the Next Level
+        </h1>
+        <p class="hero-subtitle animate-item">
+          <span class="text-accent">Bold Strategies.</span> <span class="text-accent">Seamless Automation.</span> <span class="text-accent">Real Results.</span>
+        </p>
+        <p class="hero-description animate-item">
+          Your ideas deserve more than just a plan—they deserve to become powerful, automated realities. I'm Mohan, a digital strategist who builds systems that don't just work—they dominate.
+        </p>
+        <div class="hero-buttons animate-item">
+          <a href="#" class="button button-primary" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mohan94/15min'});return false;">
+            Book a Free Strategy Call
+            <i class="ri-arrow-right-line"></i>
+          </a>
+          <a href="#services" class="button button-secondary">
+            See My Services
+            <i class="ri-eye-line"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image-container">
+        <div class="image-wrapper animate-item">
+          <div class="accent-shape"></div>
+          <div class="image-mask">
+            <img src="https://picsum.photos/seed/hero/600/800" alt="Mohan" class="hero-image">
+          </div>
+          <div class="experience-badge">
+            <span class="number">10+</span>
+            <span class="text">Years Experience</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <i class="ri-arrow-down-line"></i>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag animate-item">About Me</span>
+        <h2 class="section-title animate-item">Who Am I?</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p class="paragraph animate-item">
+            I'm not just a developer or a strategist. I'm your partner in building digital systems that empower your business to thrive. I take your vision and craft it into a streamlined, automated, and profitable reality.
+          </p>
+          <p class="paragraph animate-item">
+            My approach blends cutting-edge technology with a human-centric mindset, ensuring that your business isn't just efficient—it's impactful.
+          </p>
+          <p class="paragraph animate-item">
+            Coming from humble beginnings, I've forged a path of resilience, innovation, and strategic thinking. This mindset defines how I work and why my clients trust me to transform their businesses.
+          </p>
+          <div class="stats-container animate-item">
+            <div class="stat-item">
+              <span class="stat-value">98%</span>
+              <span class="stat-label">Client Satisfaction</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">50+</span>
+              <span class="stat-label">Projects Delivered</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">100%</span>
+              <span class="stat-label">Results Oriented</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-image-container">
+          <div class="about-image animate-item">
+            <img src="https://picsum.photos/seed/tech/600/800" alt="About Mohan">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag animate-item">Services</span>
+        <h2 class="section-title animate-item">Why Work With Me?</h2>
+      </div>
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card animate-item">
+          <div class="service-icon">
+            <i class="ri-focus-3-line"></i>
+          </div>
+          <h3 class="service-title">Precision and Clarity</h3>
+          <p class="service-description">No vague concepts—just clear, actionable strategies designed to make an impact.</p>
+        </div>
+        
+        <!-- Service 2 -->
+        <div class="service-card animate-item">
+          <div class="service-icon">
+            <i class="ri-flashlight-line"></i>
+          </div>
+          <h3 class="service-title">High-Impact Automation</h3>
+          <p class="service-description">Say goodbye to manual work. I build systems that drive growth while you focus on what truly matters.</p>
+        </div>
+        
+        <!-- Service 3 -->
+        <div class="service-card animate-item">
+          <div class="service-icon">
+            <i class="ri-shield-star-line"></i>
+          </div>
+          <h3 class="service-title">Battle-Tested Resilience</h3>
+          <p class="service-description">From humble beginnings to global success, I know what it takes to overcome challenges and build from the ground up.</p>
+        </div>
+        
+        <!-- Service 4 -->
+        <div class="service-card animate-item">
+          <div class="service-icon">
+            <i class="ri-team-line"></i>
+          </div>
+          <h3 class="service-title">Strategic Partnership</h3>
+          <p class="service-description">I don't just execute tasks—I provide strategic guidance that aligns with your long-term vision.</p>
+        </div>
+        
+        <!-- Service 5 -->
+        <div class="service-card animate-item">
+          <div class="service-icon">
+            <i class="ri-line-chart-line"></i>
+          </div>
+          <h3 class="service-title">Proven Success</h3>
+          <p class="service-description">Clients see tangible results—more time, more revenue, more freedom.</p>
+        </div>
+        
+        <!-- Service 6 -->
+        <div class="service-card animate-item">
+          <div class="service-icon">
+            <i class="ri-customer-service-2-line"></i>
+          </div>
+          <h3 class="service-title">Ongoing Support</h3>
+          <p class="service-description">Your success is my priority long after project completion with continued guidance and optimization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="section process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag animate-item">Working Process</span>
+        <h2 class="section-title animate-item">The Mohan Process</h2>
+        <p class="section-description animate-item">Your Path to Success</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item animate-item">
+          <div class="timeline-number">01</div>
+          <div class="timeline-content">
+            <h3>Discovery & Strategy Call</h3>
+            <p>Understand your vision, challenges, and goals. Identify opportunities to streamline and automate. Develop a tailored game plan that suits your needs.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-item">
+          <div class="timeline-number">02</div>
+          <div class="timeline-content">
+            <h3>Strategic Implementation</h3>
+            <p>Design intuitive systems with a focus on user experience. Integrate automation that saves time and reduces error. Test rigorously to ensure flawless performance.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-item">
+          <div class="timeline-number">03</div>
+          <div class="timeline-content">
+            <h3>Launch & Optimize</h3>
+            <p>Deploy with confidence and track the results. Continuously fine-tune for maximum impact. Provide ongoing support to ensure sustained success.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag animate-item">Testimonials</span>
+        <h2 class="section-title animate-item">Client Success Stories</h2>
+        <p class="section-description animate-item">Real Impact from Real Clients</p>
+      </div>
+      
+      <div class="testimonial-slider">
+        <div class="testimonial-item animate-item">
+          <div class="testimonial-content">
+            <i class="ri-double-quotes-l quote-icon"></i>
+            <p>Working with Mohan is like having a strategic partner who genuinely cares about your success.</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://picsum.photos/seed/client1/100" alt="Client" class="author-image">
+            <div class="author-details">
+              <h4>Entrepreneur</h4>
+              <p>Bali</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-item animate-item">
+          <div class="testimonial-content">
+            <i class="ri-double-quotes-l quote-icon"></i>
+            <p>A million stars. Mohan didn't just fix my systems—he made them thrive. After hiring two other experts who couldn't deliver, Mohan transformed my ConvertKit setup.</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://picsum.photos/seed/client2/100" alt="Client" class="author-image">
+            <div class="author-details">
+              <h4>Upwork Client</h4>
+              <p>September 2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta" id="contact">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title animate-item">Ready to Transform Your Business?</h2>
+        <p class="cta-description animate-item">Your breakthrough moment is now. Let's make your vision a reality.</p>
+        <a href="#" class="button button-primary animate-item" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mohan94/15min'});return false;">
+          Book a Free Strategy Call
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+      <div class="cta-graphic animate-item">
+        <div id="gsap-animation" class="gsap-animation-container">
+          <div class="anim-circle"></div>
+          <div class="anim-square"></div>
+          <div class="anim-triangle"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/2150172308/settings_images/j0Ize5epSQiqeKk8yUW8_Logo-yellow.png" alt="Mohan Logo">
+          <p>Digital Strategy & Automation</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-column">
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#work">Work</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-column">
+            <h3>Connect</h3>
+            <ul>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">Email</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Mohan Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Floating contact button -->
+  <div class="floating-button">
+    <button class="button button-action" aria-label="Book a call" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mohan94/15min'});return false;">
+      <i class="ri-calendar-line"></i>
+    </button>
+  </div>
+
+  <!-- Custom script -->
+  <script src="scripts.js"></script>
+</body>
+</html>
