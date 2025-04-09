@@ -29,6 +29,10 @@
   <!-- Calendly integration -->
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+  <!-- Wistia video integration -->
+  <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+
 </head>
 <body>
   <!-- Noise overlay for texture -->
@@ -44,18 +48,12 @@
   <header class="header">
     <div class="container header-container">
       <a href="#" class="logo">
-        <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/2150172308/settings_images/j0Ize5epSQiqeKk8yUW8_Logo-yellow.png" alt="Mohan Logo">
+        <img src="mohan_logo.png" alt="Mohan Logo">
       </a>
-      <nav class="nav">
-        <ul class="nav-list">
-          <!-- Simplifying to just one button -->
-          <li><a href="#" class="nav-link book-call-link" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mohan94/15min'});return false;">Book a Call</a></li>
-        </ul>
-      </nav>
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-      </button>
+      <a href="#" class="button button-primary book-call-button" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mohan94/15min'});return false;">
+        Book a Call
+        <i class="ri-calendar-line"></i>
+      </a>
     </div>
   </header>
 
@@ -78,7 +76,7 @@
         <div class="hero-buttons animate-item">
           <a href="#" class="button button-primary" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mohan94/15min'});return false;">
             Book a Free Strategy Call
-            <i class="ri-arrow-right-line"></i>
+            <i class="ri-calendar-line"></i>
           </a>
           <a href="#services" class="button button-secondary">
             See My Services
@@ -90,7 +88,7 @@
         <div class="image-wrapper animate-item">
           <div class="accent-shape"></div>
           <div class="image-mask">
-            <img src="https://picsum.photos/seed/hero/600/800" alt="Mohan" class="hero-image">
+            <img src="Mohan1.jpg" alt="Mohan" class="hero-image">
           </div>
           <div class="experience-badge">
             <span class="number">10+</span>
@@ -140,7 +138,7 @@
         </div>
         <div class="about-image-container">
           <div class="about-image animate-item">
-            <img src="https://picsum.photos/seed/tech/600/800" alt="About Mohan">
+            <img src="mohan2.JPG" alt="About Mohan">
           </div>
         </div>
       </div>
@@ -249,26 +247,86 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
+  <!-- Testimonials Section with Videos -->
   <section class="section testimonials" id="testimonials">
     <div class="container">
       <div class="section-header">
         <span class="section-tag animate-item">Testimonials</span>
-        <h2 class="section-title animate-item">Client Success Stories</h2>
-        <p class="section-description animate-item">Real Impact from Real Clients</p>
+        <h2 class="section-title animate-item">Video Success Stories</h2>
+        <p class="section-description animate-item">Hear directly from clients about their experience</p>
+        <div class="video-counter animate-item">
+          <span class="counter-number">3</span>
+          <span class="counter-text">Video Testimonials</span>
+        </div>
+      </div>
+      
+      <!-- Video Testimonial Grid -->
+      <div class="video-testimonial-grid">
+        <!-- Horizontal Video -->
+        <div class="video-testimonial horizontal-video animate-item">
+          <div class="video-wrapper">
+            <div class="video-overlay">
+              <button class="play-button" data-video-id="gnhiqjwj3a" aria-label="Play video testimonial">
+                <i class="ri-play-fill"></i>
+              </button>
+              <div class="testimonial-meta">
+                <h4>Client Testimonial</h4>
+                <p>Digital Transformation Success</p>
+              </div>
+            </div>
+            <div class="wistia-container" id="wistia-gnhiqjwj3a"></div>
+          </div>
+        </div>
+        
+        <!-- Vertical Video 1 -->
+        <div class="video-testimonial vertical-video animate-item">
+          <div class="video-wrapper">
+            <div class="video-overlay">
+              <button class="play-button" data-video-id="uzotbt6u9q" aria-label="Play video testimonial">
+                <i class="ri-play-fill"></i>
+              </button>
+              <div class="testimonial-meta">
+                <h4>Client Success</h4>
+                <p>Automation Expert</p>
+              </div>
+            </div>
+            <div class="wistia-container" id="wistia-uzotbt6u9q"></div>
+          </div>
+        </div>
+        
+        <!-- Vertical Video 2 -->
+        <div class="video-testimonial vertical-video animate-item">
+          <div class="video-wrapper">
+            <div class="video-overlay">
+              <button class="play-button" data-video-id="q4y65yhq5x" aria-label="Play video testimonial">
+                <i class="ri-play-fill"></i>
+              </button>
+              <div class="testimonial-meta">
+                <h4>Client Feedback</h4>
+                <p>Strategic Partnership</p>
+              </div>
+            </div>
+            <div class="wistia-container" id="wistia-q4y65yhq5x"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Text Testimonials (Optional - Keep or Remove) -->
+      <div class="section-subheader animate-item">
+        <h3>What Clients Say</h3>
       </div>
       
       <div class="testimonial-slider">
         <div class="testimonial-item animate-item">
           <div class="testimonial-content">
             <i class="ri-double-quotes-l quote-icon"></i>
-            <p>Working with Mohan is like having a strategic partner who genuinely cares about your success.</p>
+            <p>A million stars. Mohan didn't just fix my systems—he made them thrive. After hiring two other experts who couldn't deliver, Mohan transformed my ConvertKit setup.</p>
           </div>
           <div class="testimonial-author">
-            <img src="https://picsum.photos/seed/client1/100" alt="Client" class="author-image">
+            <img src="client1.jpg" alt="Client" class="author-image">
             <div class="author-details">
-              <h4>Entrepreneur</h4>
-              <p>Bali</p>
+              <h4>Upwork Client</h4>
+              <p>September 2023</p>
             </div>
           </div>
         </div>
@@ -276,13 +334,13 @@
         <div class="testimonial-item animate-item">
           <div class="testimonial-content">
             <i class="ri-double-quotes-l quote-icon"></i>
-            <p>A million stars. Mohan didn't just fix my systems—he made them thrive. After hiring two other experts who couldn't deliver, Mohan transformed my ConvertKit setup.</p>
+            <p>Mohan is highly organized and proactive. His attention to detail and ability to solve complex problems made our project a success. A true professional who always delivers!</p>
           </div>
           <div class="testimonial-author">
             <img src="https://picsum.photos/seed/client2/100" alt="Client" class="author-image">
             <div class="author-details">
               <h4>Upwork Client</h4>
-              <p>September 2023</p>
+              <p>July 2023</p>
             </div>
           </div>
         </div>
@@ -298,7 +356,7 @@
         <p class="cta-description animate-item">Your breakthrough moment is now. Let's make your vision a reality.</p>
         <a href="#" class="button button-primary animate-item" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mohan94/15min'});return false;">
           Book a Free Strategy Call
-          <i class="ri-arrow-right-line"></i>
+          <i class="ri-calendar-line"></i>
         </a>
       </div>
       <div class="cta-graphic animate-item">
@@ -316,31 +374,31 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-logo">
-          <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/2150172308/settings_images/j0Ize5epSQiqeKk8yUW8_Logo-yellow.png" alt="Mohan Logo">
+          <img src="mohan_logo.png" alt="Mohan Logo">
           <p>Digital Strategy & Automation</p>
         </div>
-        <div class="footer-links">
-          <div class="footer-links-column">
-            <h3>Navigation</h3>
-            <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#work">Work</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-links-column">
-            <h3>Connect</h3>
-            <ul>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Email</a></li>
-            </ul>
-          </div>
+        
+        <!-- Social Icons -->
+        <div class="social-icons">
+          <a href="https://twitter.com/mohan_s94" class="social-icon" aria-label="Twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a href="https://github.com/sohanuzzaman" class="social-icon" aria-label="GitHub">
+            <i class="ri-github-fill"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/mohan-sohanuzzaman/" class="social-icon" aria-label="LinkedIn">
+            <i class="ri-linkedin-fill"></i>
+          </a>
+          <a href="https://www.upwork.com/freelancers/~01c2b05974c0cfec0a" class="social-icon" aria-label="Upwork">
+            <i class="ri-briefcase-4-line"></i>
+          </a>
         </div>
       </div>
       <div class="footer-bottom">
         <p>© 2025 Mohan Solutions. All rights reserved.</p>
+        <a href="#" class="scroll-to-top" aria-label="Scroll to top">
+          <i class="ri-arrow-up-line"></i>
+        </a>
       </div>
     </div>
   </footer>

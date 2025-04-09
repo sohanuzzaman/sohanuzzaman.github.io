@@ -732,6 +732,175 @@ h1, h2, h3, h4, h5 {
   color: rgba(255, 255, 255, 0.8); /* Brighter gray for better contrast */
 }
 
+/* Video Testimonials */
+.video-testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.video-testimonial {
+  position: relative;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background-color: var(--color-dark-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-testimonial:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl);
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.horizontal-video .video-wrapper {
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.vertical-video .video-wrapper {
+  padding-top: 177%; /* ~16:9 aspect ratio */
+}
+
+.horizontal-video {
+  grid-column: span 3;
+}
+
+.vertical-video {
+  grid-column: span 1;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.4));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.play-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(253, 216, 53, 0.9);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 2rem;
+  color: var(--color-dark);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.play-button:hover {
+  background-color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.testimonial-meta {
+  text-align: center;
+  color: var(--color-white);
+  padding: 0 1.5rem;
+}
+
+.testimonial-meta h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.testimonial-meta p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.wistia-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Style the section subheader for text testimonials */
+.section-subheader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-subheader h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+/* Video counter */
+.video-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-full);
+  margin-top: 1rem;
+}
+
+.counter-number {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.counter-text {
+  font-size: 0.875rem;
+  color: var(--color-gray);
+}
+
+/* Responsive tweaks for video grid */
+@media (max-width: 992px) {
+  .video-testimonial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .horizontal-video {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-testimonial-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .horizontal-video,
+  .vertical-video {
+    grid-column: span 1;
+  }
+  
+  .play-button {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}
+
 /* CTA Section */
 .cta {
   padding: 8rem 0;
@@ -767,7 +936,33 @@ h1, h2, h3, h4, h5 {
 .footer-top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 3rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  color: var(--color-white);
+  font-size: 1.25rem;
+}
+
+.social-icon:hover {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  transform: translateY(-3px);
 }
 
 .footer-logo img {
@@ -810,9 +1005,34 @@ h1, h2, h3, h4, h5 {
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-top: 2rem;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: rgba(255, 255, 255, 0.8); /* Brighter gray for better contrast */
   font-size: 0.875rem;
+}
+
+.scroll-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
 }
 
 /* Animation Classes */
@@ -918,6 +1138,14 @@ p, .paragraph {
   
   .stats-container {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .video-testimonial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .horizontal-video {
+    grid-column: span 2;
   }
 }
 
@@ -1061,6 +1289,22 @@ p, .paragraph {
     width: 55px;
     height: 55px;
     font-size: 1.3rem;
+  }
+
+  .video-testimonial-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .horizontal-video,
+  .vertical-video {
+    grid-column: span 1;
+  }
+  
+  .play-button {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
   }
 }
 
