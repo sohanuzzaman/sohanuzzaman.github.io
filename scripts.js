@@ -318,50 +318,80 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Handle video testimonials
-  const playButtons = document.querySelectorAll('.play-button');
+  // Handle video testimonials with modal
+  const videoWrappers = document.querySelectorAll('.video-wrapper');
+  const videoModal = document.getElementById('videoModal');
+  const modalClose = document.getElementById('modalClose');
+  const modalVideoContainer = document.getElementById('modalVideoContainer');
+  let activeVideo = null;
 
-  playButtons.forEach(button => {
-    const videoId = button.dataset.videoId;
-    const overlay = button.closest('.video-overlay');
-    const container = document.getElementById(`wistia-${videoId}`);
+  // Set thumbnails as background images
+  videoWrappers.forEach(wrapper => {
+    const videoId = wrapper.dataset.videoId;
     
     // Set thumbnail as background
-    if (videoId === 'gnhiqjwj3a') {
-      button.closest('.video-wrapper').style.backgroundImage = "url('https://fast.wistia.com/embed/medias/gnhiqjwj3a/swatch')";
-    } else if (videoId === 'uzotbt6u9q') {
-      button.closest('.video-wrapper').style.backgroundImage = "url('https://fast.wistia.com/embed/medias/uzotbt6u9q/swatch')";
-    } else if (videoId === 'q4y65yhq5x') {
-      button.closest('.video-wrapper').style.backgroundImage = "url('https://fast.wistia.com/embed/medias/q4y65yhq5x/swatch')";
+    wrapper.style.backgroundImage = `url('https://fast.wistia.com/embed/medias/${videoId}/swatch')`;
+    
+    wrapper.addEventListener('click', () => {
+      openVideoModal(videoId);
+    });
+  });
+
+  // Open modal and play video
+  function openVideoModal(videoId) {
+    // Create the Wistia embed
+    modalVideoContainer.innerHTML = `<div class="wistia_embed wistia_async_${videoId}" style="height:100%;width:100%"></div>`;
+    
+    // Show modal
+    videoModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    
+    // Initialize video
+    window._wq = window._wq || [];
+    _wq.push({
+      id: videoId,
+      onReady: function(video) {
+        activeVideo = video;
+        video.play();
+      }
+    });
+  }
+
+  // Close modal and stop video
+  if (modalClose) {
+    modalClose.addEventListener('click', () => {
+      closeVideoModal();
+    });
+  }
+
+  // Also close when clicking outside the video
+  if (videoModal) {
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        closeVideoModal();
+      }
+    });
+  }
+
+  function closeVideoModal() {
+    if (activeVideo) {
+      activeVideo.pause();
     }
     
-    button.addEventListener('click', () => {
-      // Create the Wistia embed
-      window._wq = window._wq || [];
-      _wq.push({
-        id: videoId,
-        onReady: function(video) {
-          // Hide overlay when video is ready
-          overlay.style.opacity = '0';
-          setTimeout(() => {
-            overlay.style.display = 'none';
-          }, 300);
-          
-          // Play video
-          video.play();
-          
-          // When video ends, show overlay again
-          video.bind('end', function() {
-            overlay.style.display = 'flex';
-            setTimeout(() => {
-              overlay.style.opacity = '1';
-            }, 10);
-          });
-        }
-      });
-      
-      // Create the embed in the container
-      container.innerHTML = `<div class="wistia_embed wistia_async_${videoId}" style="height:100%;width:100%"></div>`;
-    });
+    videoModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+    
+    // Clear the video container after animation completes
+    setTimeout(() => {
+      modalVideoContainer.innerHTML = '';
+      activeVideo = null;
+    }, 300);
+  }
+
+  // Close with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+      closeVideoModal();
+    }
   });
 });

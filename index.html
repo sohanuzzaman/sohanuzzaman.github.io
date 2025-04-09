@@ -127,7 +127,7 @@
               <span class="stat-label">Client Satisfaction</span>
             </div>
             <div class="stat-item">
-              <span class="stat-value">50+</span>
+              <span class="stat-value">90+</span>
               <span class="stat-label">Projects Delivered</span>
             </div>
             <div class="stat-item">
@@ -262,51 +262,36 @@
       
       <!-- Video Testimonial Grid -->
       <div class="video-testimonial-grid">
-        <!-- Horizontal Video -->
-        <div class="video-testimonial horizontal-video animate-item">
-          <div class="video-wrapper">
+        <!-- Video 1 -->
+        <div class="video-testimonial animate-item">
+          <div class="video-wrapper" data-video-id="gnhiqjwj3a">
             <div class="video-overlay">
-              <button class="play-button" data-video-id="gnhiqjwj3a" aria-label="Play video testimonial">
+              <button class="play-button" aria-label="Play video testimonial">
                 <i class="ri-play-fill"></i>
               </button>
-              <div class="testimonial-meta">
-                <h4>Client Testimonial</h4>
-                <p>Digital Transformation Success</p>
-              </div>
             </div>
-            <div class="wistia-container" id="wistia-gnhiqjwj3a"></div>
           </div>
         </div>
         
-        <!-- Vertical Video 1 -->
-        <div class="video-testimonial vertical-video animate-item">
-          <div class="video-wrapper">
+        <!-- Video 2 -->
+        <div class="video-testimonial animate-item">
+          <div class="video-wrapper" data-video-id="uzotbt6u9q">
             <div class="video-overlay">
-              <button class="play-button" data-video-id="uzotbt6u9q" aria-label="Play video testimonial">
+              <button class="play-button" aria-label="Play video testimonial">
                 <i class="ri-play-fill"></i>
               </button>
-              <div class="testimonial-meta">
-                <h4>Client Success</h4>
-                <p>Automation Expert</p>
-              </div>
             </div>
-            <div class="wistia-container" id="wistia-uzotbt6u9q"></div>
           </div>
         </div>
         
-        <!-- Vertical Video 2 -->
-        <div class="video-testimonial vertical-video animate-item">
-          <div class="video-wrapper">
+        <!-- Video 3 -->
+        <div class="video-testimonial animate-item">
+          <div class="video-wrapper" data-video-id="q4y65yhq5x">
             <div class="video-overlay">
-              <button class="play-button" data-video-id="q4y65yhq5x" aria-label="Play video testimonial">
+              <button class="play-button" aria-label="Play video testimonial">
                 <i class="ri-play-fill"></i>
               </button>
-              <div class="testimonial-meta">
-                <h4>Client Feedback</h4>
-                <p>Strategic Partnership</p>
-              </div>
             </div>
-            <div class="wistia-container" id="wistia-q4y65yhq5x"></div>
           </div>
         </div>
       </div>
@@ -323,7 +308,7 @@
             <p>A million stars. Mohan didn't just fix my systems—he made them thrive. After hiring two other experts who couldn't deliver, Mohan transformed my ConvertKit setup.</p>
           </div>
           <div class="testimonial-author">
-            <img src="client1.jpg" alt="Client" class="author-image">
+            <img src="client1.png" alt="Client" class="author-image">
             <div class="author-details">
               <h4>Upwork Client</h4>
               <p>September 2023</p>
@@ -337,7 +322,7 @@
             <p>Mohan is highly organized and proactive. His attention to detail and ability to solve complex problems made our project a success. A true professional who always delivers!</p>
           </div>
           <div class="testimonial-author">
-            <img src="https://picsum.photos/seed/client2/100" alt="Client" class="author-image">
+            <img src="client2.png" alt="Client" class="author-image">
             <div class="author-details">
               <h4>Upwork Client</h4>
               <p>July 2023</p>
@@ -380,18 +365,18 @@
         
         <!-- Social Icons -->
         <div class="social-icons">
-          <a href="https://twitter.com/mohan_s94" class="social-icon" aria-label="Twitter">
+            <a href="https://twitter.com/mohan_s94" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
             <i class="ri-twitter-fill"></i>
-          </a>
-          <a href="https://github.com/sohanuzzaman" class="social-icon" aria-label="GitHub">
+            </a>
+            <a href="https://github.com/sohanuzzaman" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
             <i class="ri-github-fill"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/mohan-sohanuzzaman/" class="social-icon" aria-label="LinkedIn">
+            </a>
+            <a href="https://www.linkedin.com/in/mohan-sohanuzzaman/" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
             <i class="ri-linkedin-fill"></i>
-          </a>
-          <a href="https://www.upwork.com/freelancers/~01c2b05974c0cfec0a" class="social-icon" aria-label="Upwork">
+            </a>
+            <a href="https://www.upwork.com/freelancers/~01c2b05974c0cfec0a" class="social-icon" aria-label="Upwork" target="_blank" rel="noopener noreferrer">
             <i class="ri-briefcase-4-line"></i>
-          </a>
+            </a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -408,6 +393,16 @@
     <button class="button button-action" aria-label="Book a call" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mohan94/15min'});return false;">
       <i class="ri-calendar-line"></i>
     </button>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="modal-container" id="modalVideoContainer"></div>
+    </div>
   </div>
 
   <!-- Custom script -->
