@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Service card hover effects
+  // Service card hover effects - original icon animation
   const serviceCards = document.querySelectorAll('.service-card');
   
   serviceCards.forEach(card => {
@@ -156,6 +156,53 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
+  
+  // NEW: Service card gradient hover effect
+  // Track mouse position globally for service cards
+  const servicesSection = document.querySelector('.services');
+  const serviceCardWrappers = document.querySelectorAll('.service-card-wrapper');
+  
+  if (servicesSection) {
+    document.addEventListener('mousemove', (e) => {
+      // Get mouse coordinates
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      // Process each service card
+      serviceCardWrappers.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        
+        // Calculate the center of the card
+        const cardCenterX = rect.left + rect.width / 2;
+        const cardCenterY = rect.top + rect.height / 2;
+        
+        // Calculate distance from mouse to card center
+        const deltaX = mouseX - cardCenterX;
+        const deltaY = mouseY - cardCenterY;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        
+        // Define a threshold distance - how far the mouse can be to affect the card
+        const threshold = 300;
+        
+        if (distance < threshold) {
+          // Calculate position for the gradient based on mouse position relative to card
+          const x = mouseX - rect.left;
+          const y = mouseY - rect.top;
+          
+          // Calculate opacity based on distance (closer = more opaque)
+          const opacity = 1 - (distance / threshold);
+          
+          // Update CSS variables directly on the element
+          card.style.setProperty('--x', `${x}px`);
+          card.style.setProperty('--y', `${y}px`);
+          card.style.setProperty('--opacity', opacity.toString());
+        } else {
+          // Hide the gradient if mouse is too far
+          card.style.setProperty('--opacity', '0');
+        }
+      });
+    });
+  }
   
   // Mobile menu toggle
   const menuToggle = document.querySelector('.menu-toggle');

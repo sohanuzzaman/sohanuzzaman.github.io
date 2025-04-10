@@ -579,21 +579,59 @@
     gap: 2rem;
   }
   
-  .service-card {
-    background-color: rgba(255, 255, 255, 0.02);
+  /* New service card structure matching reference code */
+  .service-card-wrapper {
+    position: relative;
     border-radius: var(--border-radius-lg);
-    padding: 2rem;
-    transition: var(--transition-medium);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
     height: 100%;
   }
   
-  .service-card:hover {
-    transform: translateY(-10px);
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: var(--color-primary);
+  .service-card-wrapper:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -2px;  /* Changed back to -2px for thinner border */
+    top: -2px;   /* Changed back to -2px for thinner border */
+    width: calc(100% + 4px);  /* Changed back to 4px for thinner border */
+    height: calc(100% + 4px); /* Changed back to 4px for thinner border */
+    /* Increased radius from 250px to 400px so most of the border is visible when hovering over center */
+    background: radial-gradient(400px circle at var(--x, 150px) var(--y, 100px), 
+                rgba(253, 216, 53, 0.9) 0%, 
+                rgba(253, 216, 53, 0.4) 20%,
+                transparent 40%);
+    /* Use a mask to cut out the middle */
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;  /* Changed back to 2px for thinner border */
+    border-radius: calc(var(--border-radius-lg) + 2px);
+    z-index: -1;
+    opacity: var(--opacity, 0);
+    transition: opacity 0.2s ease;
+    will-change: opacity, background;
+    box-shadow: 0 0 10px rgba(253, 216, 53, 0.3); /* Reduced shadow intensity */
   }
   
+  .service-card-inner {
+    background-color: rgba(255, 255, 255, 0.02);
+    height: 100%;
+    width: 100%;
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-medium);
+    height: 100%;
+  }
+  
+  /* Remove the move-up effect on hover */
+  .service-card-wrapper:hover .service-card-inner {
+    transform: none;
+  }
+  
+  /* Keep original service icon styling */
   .service-icon {
     width: 60px;
     height: 60px;
@@ -608,7 +646,7 @@
     transition: var(--transition-medium);
   }
   
-  .service-card:hover .service-icon {
+  .service-card-wrapper:hover .service-icon {
     background-color: var(--color-primary);
     color: var(--color-dark);
     transform: rotate(10deg) scale(1.1);
@@ -875,272 +913,6 @@
     }
   }
 
-  @media (max-width: 768px) {
-    .video-testimonial-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    
-    .horizontal-video,
-    .vertical-video {
-      grid-column: span 1;
-    }
-    
-    .play-button {
-      width: 60px;
-      height: 60px;
-      font-size: 1.5rem;
-    }
-  }
-  
-  /* CTA Section */
-  .cta {
-    padding: 8rem 0;
-    background: linear-gradient(to bottom right, rgba(var(--color-primary-dark), 0.1), transparent);
-  }
-  
-  .cta .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
-  
-  .cta-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .cta-description {
-    font-size: 1.15rem; /* Larger font for key content areas */
-    color: var(--color-gray);
-    margin-bottom: 2.5rem;
-    max-width: 650px; /* Limit width for better readability */
-  }
-  
-  /* Footer */
-  .footer {
-    background-color: var(--color-dark-light);
-    padding: 5rem 0 2rem;
-    position: relative;
-  }
-  
-  .footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3rem;
-  }
-  
-  .social-icons {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-  }
-  
-  .social-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    color: var(--color-white);
-    font-size: 1.25rem;
-  }
-  
-  .social-icon:hover {
-    background-color: var(--color-primary);
-    color: var(--color-dark);
-    transform: translateY(-3px);
-  }
-  
-  .footer-logo img {
-    height: 32px;
-    margin-bottom: 1rem;
-  }
-  
-  .footer-logo p {
-    color: var(--color-gray);
-    font-size: 0.875rem;
-  }
-  
-  .footer-links {
-    display: flex;
-    gap: 4rem;
-  }
-  
-  .footer-links-column h3 {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    color: var(--color-white);
-  }
-  
-  .footer-links-column ul {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .footer-links-column a {
-    color: rgba(255, 255, 255, 0.8); /* Brighter gray for better contrast */
-    font-size: 0.875rem;
-    transition: var(--transition-fast);
-  }
-  
-  .footer-links-column a:hover {
-    color: var(--color-primary);
-  }
-  
-  .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.8); /* Brighter gray for better contrast */
-    font-size: 0.875rem;
-  }
-  
-  .scroll-to-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  
-  .scroll-to-top.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .scroll-to-top:hover {
-    background-color: var(--color-primary);
-    color: var(--color-dark);
-  }
-  
-  /* Animation Classes */
-  .animate-item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  
-  .animate-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Add this near the top of your CSS file */
-  .no-js .animate-item {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  
-  /* Temporary fix to see content */
-  .animate-item {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  
-  /* GSAP Animation Replacement */
-  .gsap-animation-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
-  }
-  
-  .anim-circle, .anim-square, .anim-triangle {
-    position: absolute;
-    background-color: var(--color-primary);
-  }
-  
-  .anim-circle {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .anim-square {
-    width: 60px;
-    height: 60px;
-    top: 30px;
-    left: 40px;
-    border-radius: 12px;
-    opacity: 0.7;
-  }
-  
-  .anim-triangle {
-    width: 0;
-    height: 0;
-    border-left: 40px solid transparent;
-    border-right: 40px solid transparent;
-    border-bottom: 70px solid var(--color-primary);
-    background-color: transparent;
-    bottom: 40px;
-    right: 40px;
-    opacity: 0.7;
-  }
-  
-  /* Improved text readability */
-  p, .paragraph {
-    color: rgba(255, 255, 255, 0.9); /* Increased opacity for better contrast */
-    font-size: 1.125rem; /* Slightly increased font size */
-    line-height: 1.7; /* Improved line height */
-    margin-bottom: 1.5rem; /* Better paragraph spacing */
-    letter-spacing: 0.01em; /* Slight letter spacing for readability */
-  }
-  
-  .hero-description,
-  .service-description,
-  .timeline-content p,
-  .testimonial-content p,
-  .cta-description {
-    font-size: 1.15rem; /* Larger font for key content areas */
-    max-width: 650px; /* Limit width for better readability */
-  }
-  
-  /* Media Queries */
-  @media (max-width: 992px) {
-    .hero-container,
-    .about-content,
-    .cta .container {
-      grid-template-columns: 1fr;
-    }
-  
-    .hero-image-container {
-      order: -1;
-    }
-    
-    .image-mask {
-      height: 400px;
-    }
-    
-    .stats-container {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  
-    .video-testimonial-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .horizontal-video {
-      grid-column: span 2;
-    }
-  }
-  
   @media (max-width: 768px) {
     .video-testimonial-grid {
       grid-template-columns: 1fr;
