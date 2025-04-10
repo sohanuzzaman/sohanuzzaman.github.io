@@ -1607,29 +1607,61 @@
   /* Mobile Gradient Animation for elements in viewport */
   @keyframes gradientBorderSweep {
     0% {
-      background: linear-gradient(90deg, 
+      background: linear-gradient(135deg, 
                   rgba(253, 216, 53, 0.9) 0%, 
-                  rgba(253, 216, 53, 0.4) 20%,
-                  transparent 40%) left/300% 100%;
+                  rgba(253, 216, 53, 0.4) 30%,
+                  transparent 70%) top left/300% 300%;
       background-repeat: no-repeat;
     }
     100% {
-      background: linear-gradient(90deg, 
+      background: linear-gradient(135deg, 
                   rgba(253, 216, 53, 0.9) 0%, 
-                  rgba(253, 216, 53, 0.4) 20%,
-                  transparent 40%) right/300% 100%;
+                  rgba(253, 216, 53, 0.4) 30%,
+                  transparent 70%) bottom right/300% 300%;
       background-repeat: no-repeat;
     }
   }
   
   .mobile-glow-active:before {
     opacity: 1 !important;
-    background: linear-gradient(90deg, 
+    background: linear-gradient(135deg, 
+                rgba(253, 216, 53, 0.9) 0%, 
+                rgba(253, 216, 53, 0.4) 30%,
+                transparent 70%);
+    animation: gradientBorderSweep 3.5s ease-in-out infinite alternate;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
+  }
+
+  /* Video Testimonial Wrapper with Gradient Border Effect */
+  .video-testimonial-wrapper {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    height: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .video-testimonial-wrapper:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background: radial-gradient(600px circle at var(--x, 150px) var(--y, 100px), 
                 rgba(253, 216, 53, 0.9) 0%, 
                 rgba(253, 216, 53, 0.4) 20%,
                 transparent 40%);
-    /* Animation is now 3.5s (slower) */
-    animation: gradientBorderSweep 3.5s ease-in-out infinite alternate;
+    border-radius: calc(var(--border-radius-lg) + 2px);
+    z-index: -1;
+    opacity: var(--opacity, 0);
+    transition: opacity 0.2s ease;
+    will-change: opacity, background;
+    box-shadow: 0 0 10px rgba(253, 216, 53, 0.3);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;

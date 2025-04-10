@@ -157,130 +157,98 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // NEW: Service card gradient hover effect
-  // Track mouse position globally for service cards
-  const servicesSection = document.querySelector('.services');
-  const serviceCardWrappers = document.querySelectorAll('.service-card-wrapper');
-  
-  if (servicesSection) {
-    document.addEventListener('mousemove', (e) => {
-      // Get mouse coordinates
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-      
-      // Process each service card
-      serviceCardWrappers.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        
-        // Calculate the center of the card
-        const cardCenterX = rect.left + rect.width / 2;
-        const cardCenterY = rect.top + rect.height / 2;
-        
-        // Calculate distance from mouse to card center
-        const deltaX = mouseX - cardCenterX;
-        const deltaY = mouseY - cardCenterY;
-        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-        
-        // Define a threshold distance - how far the mouse can be to affect the card
-        const threshold = 300;
-        
-        if (distance < threshold) {
-          // Calculate position for the gradient based on mouse position relative to card
-          const x = mouseX - rect.left;
-          const y = mouseY - rect.top;
-          
-          // Calculate opacity based on distance (closer = more opaque)
-          const opacity = 1 - (distance / threshold);
-          
-          // Update CSS variables directly on the element
-          card.style.setProperty('--x', `${x}px`);
-          card.style.setProperty('--y', `${y}px`);
-          card.style.setProperty('--opacity', opacity.toString());
-        } else {
-          // Hide the gradient if mouse is too far
-          card.style.setProperty('--opacity', '0');
-        }
-      });
-    });
-  }
-
-  // Gradient hover effect for all wrapper elements
+  // GRADIENT HOVER EFFECT - Fixed implementation
+  // Get all wrapper elements that should have the gradient border effect
   const allWrapperElements = document.querySelectorAll(
-    '.service-card-wrapper, .testimonial-card-wrapper, .timeline-content-wrapper'
+    '.service-card-wrapper, .testimonial-card-wrapper, .timeline-content-wrapper, .video-testimonial-wrapper'
   );
   
-  if (allWrapperElements.length > 0) {
-    document.addEventListener('mousemove', (e) => {
-      // Get mouse coordinates
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-      
-      // Process each wrapper element
-      allWrapperElements.forEach(element => {
-        const rect = element.getBoundingClientRect();
-        
-        // Calculate the center of the element
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        // Calculate distance from mouse to element center
-        const deltaX = mouseX - centerX;
-        const deltaY = mouseY - centerY;
-        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-        
-        // Define a threshold distance - how far the mouse can be to affect the element
-        const threshold = 300;
-        
-        if (distance < threshold) {
-          // Calculate position for the gradient based on mouse position relative to element
-          const x = mouseX - rect.left;
-          const y = mouseY - rect.top;
-          
-          // Calculate opacity based on distance (closer = more opaque)
-          const opacity = 1 - (distance / threshold);
-          
-          // Update CSS variables directly on the element
-          element.style.setProperty('--x', `${x}px`);
-          element.style.setProperty('--y', `${y}px`);
-          element.style.setProperty('--opacity', opacity.toString());
-        } else {
-          // Hide the gradient if mouse is too far
-          element.style.setProperty('--opacity', '0');
-        }
-      });
-    });
-  }
-
-  // Mobile viewport detection for gradient border effect
+  // Only proceed if we found elements and are not on mobile
   const isMobile = window.innerWidth <= 768;
   
-  // Only initialize the effect if on mobile
-  if (isMobile) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        // When element is in the middle of the viewport
-        if (entry.isIntersecting) {
-          // Add delay based on the element's position
-          setTimeout(() => {
-            entry.target.classList.add('mobile-glow-active');
+  if (allWrapperElements.length > 0) {
+    // Desktop effect: Mouse-following gradient
+    if (!isMobile) {
+      document.addEventListener('mousemove', (e) => {
+        // Get mouse coordinates
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        // Process each wrapper element
+        allWrapperElements.forEach(element => {
+          const rect = element.getBoundingClientRect();
+          
+          // Calculate the center of the element
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          
+          // Calculate distance from mouse to element center
+          const deltaX = mouseX - centerX;
+          const deltaY = mouseY - centerY;
+          const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+          
+          // Define a threshold distance - how far the mouse can be to affect the element
+          const threshold = 300;
+          
+          if (distance < threshold) {
+            // Calculate position for the gradient based on mouse position relative to element
+            const x = mouseX - rect.left;
+            const y = mouseY - rect.top;
             
-            // Remove the class after animation completes (plus delay)
-            setTimeout(() => {
-              entry.target.classList.remove('mobile-glow-active');
-            }, 5000); // Animation runs for 3.5s x 2 iterations = 7s, but we'll stop earlier
-          }, index * 300); // Add a 300ms delay for each consecutive element
-        }
+            // Calculate opacity based on distance (closer = more opaque)
+            const opacity = 1 - (distance / threshold);
+            
+            // Update CSS variables directly on the element
+            element.style.setProperty('--x', `${x}px`);
+            element.style.setProperty('--y', `${y}px`);
+            element.style.setProperty('--opacity', opacity.toString());
+          } else {
+            // Hide the gradient if mouse is too far
+            element.style.setProperty('--opacity', '0');
+          }
+        });
       });
-    }, {
-      root: null, // viewport
-      rootMargin: '-10% 0px', // Only trigger when element is mostly in viewport
-      threshold: 0.7 // Element must be 70% visible
-    });
-    
-    // Observe all wrapper elements
-    allWrapperElements.forEach(element => {
-      observer.observe(element);
-    });
+    } 
+    // Mobile effect: Reliable animation using best practices
+    else {
+      // Track which elements have already been animated
+      const animatedElements = new Set();
+      
+      // Use scroll event instead of IntersectionObserver for more reliable detection
+      window.addEventListener('scroll', () => {
+        const windowHeight = window.innerHeight;
+        const triggerPosition = windowHeight * 0.6; // 60% from top (40% from bottom)
+        
+        allWrapperElements.forEach((element, index) => {
+          // Skip elements that were already animated
+          if (animatedElements.has(element)) return;
+          
+          const rect = element.getBoundingClientRect();
+          const elementTop = rect.top;
+          
+          // Trigger when element top reaches the trigger position
+          if (elementTop <= triggerPosition && elementTop >= 0) {
+            // Add element to the set of animated elements
+            animatedElements.add(element);
+            
+            // Add delay based on the element's position in the DOM
+            setTimeout(() => {
+              element.classList.add('mobile-glow-active');
+              
+              // Remove the class after animation completes
+              setTimeout(() => {
+                element.classList.remove('mobile-glow-active');
+                
+                // Allow re-animation after some time if element comes back into view
+                setTimeout(() => {
+                  animatedElements.delete(element);
+                }, 5000);
+              }, 4000);
+            }, index * 200);
+          }
+        });
+      }, { passive: true }); // Performance optimization
+    }
   }
 
   // Mobile menu toggle
