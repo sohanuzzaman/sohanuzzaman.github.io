@@ -203,7 +203,52 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
+
+  // Gradient hover effect for all wrapper elements (service cards, timeline items, testimonials)
+  const allWrapperElements = document.querySelectorAll('.service-card-wrapper, .timeline-item-wrapper, .testimonial-card-wrapper');
   
+  if (allWrapperElements.length > 0) {
+    document.addEventListener('mousemove', (e) => {
+      // Get mouse coordinates
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      // Process each wrapper element
+      allWrapperElements.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        
+        // Calculate the center of the element
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // Calculate distance from mouse to element center
+        const deltaX = mouseX - centerX;
+        const deltaY = mouseY - centerY;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        
+        // Define a threshold distance - how far the mouse can be to affect the element
+        const threshold = 300;
+        
+        if (distance < threshold) {
+          // Calculate position for the gradient based on mouse position relative to element
+          const x = mouseX - rect.left;
+          const y = mouseY - rect.top;
+          
+          // Calculate opacity based on distance (closer = more opaque)
+          const opacity = 1 - (distance / threshold);
+          
+          // Update CSS variables directly on the element
+          element.style.setProperty('--x', `${x}px`);
+          element.style.setProperty('--y', `${y}px`);
+          element.style.setProperty('--opacity', opacity.toString());
+        } else {
+          // Hide the gradient if mouse is too far
+          element.style.setProperty('--opacity', '0');
+        }
+      });
+    });
+  }
+
   // Mobile menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navList = document.querySelector('.nav-list');
