@@ -328,46 +328,6 @@ a {
   <!-- Add Lottie animation library - load async -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" async></script>
 
-  <!-- Calendly integration - load only when needed -->
-  <script>
-    // Lazy load Calendly resources when user interacts
-    function loadCalendly() {
-      // Only load if not already loaded
-      if (!window.calendlyLoaded) {
-        const calendlyCSS = document.createElement('link');
-        calendlyCSS.rel = 'stylesheet';
-        calendlyCSS.href = 'https://assets.calendly.com/assets/external/widget.css';
-        document.head.appendChild(calendlyCSS);
-        
-        const calendlyScript = document.createElement('script');
-        calendlyScript.src = 'https://assets.calendly.com/assets/external/widget.js';
-        calendlyScript.async = true;
-        document.body.appendChild(calendlyScript);
-        
-        window.calendlyLoaded = true;
-      }
-    }
-    
-    // Add event listener after DOM loads to attach Calendly loader
-    document.addEventListener('DOMContentLoaded', function() {
-      const calendlyButtons = document.querySelectorAll('[data-calendly]');
-      calendlyButtons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          loadCalendly();
-          
-          // Wait for Calendly to load
-          const checkCalendly = setInterval(function() {
-            if (window.Calendly) {
-              clearInterval(checkCalendly);
-              Calendly.initPopupWidget({url: btn.getAttribute('data-calendly')});
-            }
-          }, 100);
-        });
-      });
-    });
-  </script>
-
   <!-- Wistia video integration - load on demand -->
   <script>
     // Will be initialized when a video is clicked
@@ -777,6 +737,18 @@ a {
     <button class="button button-action" aria-label="Book a call" data-calendly="https://calendly.com/mohan94/15min">
       <i class="ri-calendar-line"></i>
     </button>
+  </div>
+
+  <!-- Custom Calendly Modal -->
+  <div class="custom-modal" id="calendlyModal">
+    <div class="modal-content calendly-modal-content">
+      <button class="modal-close" id="calendlyModalClose">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="calendly-container" id="calendlyContainer">
+        <!-- Calendly will be inserted here dynamically -->
+      </div>
+    </div>
   </div>
 
   <!-- Video Modal -->

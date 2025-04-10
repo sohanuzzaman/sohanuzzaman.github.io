@@ -630,35 +630,131 @@ queueHydration(() => {
   window.modalManager = modalManager;
 }, 'critical');
 
-// Important: Calendly integration with enhanced modal closing via back button/swipe
+// Important: Calendly integration with custom modal implementation
 queueHydration(() => {
   // Find all Calendly buttons
   const calendlyButtons = document.querySelectorAll('[data-calendly]');
+  const calendlyModal = document.getElementById('calendlyModal');
+  const calendlyModalClose = document.getElementById('calendlyModalClose');
+  const calendlyContainer = document.getElementById('calendlyContainer');
   
-  if (!calendlyButtons.length) return;
+  // Don't proceed if elements aren't found
+  if (!calendlyButtons.length || !calendlyModal || !calendlyModalClose || !calendlyContainer) return;
+  
+  // Track current modal ID
+  let currentModalId = null;
+  let defaultCalendlyURL = null;
+  
+  // Try to find a default Calendly URL from the first button
+  if (calendlyButtons.length > 0) {
+    defaultCalendlyURL = calendlyButtons[0].getAttribute('data-calendly');
+  }
   
   // Function to generate random ID for Calendly instances
   const generateCalendlyId = () => `calendly-modal-${Math.floor(Math.random() * 1000000)}`;
   
-  // Lazy load Calendly resources when user interacts
-  function loadCalendly() {
-    // Only load if not already loaded
+  // Preload & initialize Calendly resources in the background after page loads
+  function preloadCalendly() {
     if (!window.calendlyLoaded) {
+      // Create hidden CSS link in head
       const calendlyCSS = document.createElement('link');
       calendlyCSS.rel = 'stylesheet';
       calendlyCSS.href = 'https://assets.calendly.com/assets/external/widget.css';
       document.head.appendChild(calendlyCSS);
       
+      // Create and load the Calendly script
       const calendlyScript = document.createElement('script');
       calendlyScript.src = 'https://assets.calendly.com/assets/external/widget.js';
       calendlyScript.async = true;
-      document.body.appendChild(calendlyScript);
       
-      window.calendlyLoaded = true;
+      // Mark as loaded when the script has finished loading
+      calendlyScript.onload = () => {
+        console.log('Calendly resources preloaded');
+        window.calendlyLoaded = true;
+        
+        // If we have a default URL, pre-initialize the Calendly widget by creating a hidden instance
+        // This makes subsequent loads much faster
+        if (defaultCalendlyURL) {
+          // Create a hidden container to preload Calendly's initialization
+          const preloadContainer = document.createElement('div');
+          preloadContainer.style.position = 'absolute';
+          preloadContainer.style.left = '-9999px';
+          preloadContainer.style.height = '1px';
+          preloadContainer.style.width = '1px';
+          preloadContainer.style.overflow = 'hidden';
+          preloadContainer.innerHTML = `<div class="calendly-inline-widget" data-url="${defaultCalendlyURL}?hide_event_type_details=1&hide_gdpr_banner=1"></div>`;
+          document.body.appendChild(preloadContainer);
+          
+          // Remove the preload container after Calendly has had a chance to initialize
+          setTimeout(() => {
+            document.body.removeChild(preloadContainer);
+          }, 5000);
+        }
+      };
+      
+      document.body.appendChild(calendlyScript);
+      window.calendlyLoaded = 'loading';
     }
   }
   
-  // Add event listener to Calendly buttons
+  // Open Calendly modal
+  function openCalendlyModal(calendlyURL) {
+    const modalId = generateCalendlyId();
+    currentModalId = modalId;
+    
+    // Create Calendly inline widget with improved height settings
+    calendlyContainer.innerHTML = `
+      <div class="calendly-inline-widget" 
+           data-url="${calendlyURL}?hide_event_type_details=1&hide_gdpr_banner=1" 
+           style="min-width:320px;height:750px;"></div>
+    `;
+    
+    // Show modal
+    calendlyModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    
+    // If Calendly is loaded, manually trigger its initialization
+    if (window.Calendly) {
+      window.Calendly.initInlineWidget({
+        url: calendlyURL,
+        parentElement: calendlyContainer.querySelector('.calendly-inline-widget'),
+        prefill: {},
+        utm: {}
+      });
+    }
+    
+    // Register with modal manager
+    window.modalManager.openModal(
+      modalId, 
+      calendlyModal,
+      closeCalendlyModal
+    );
+    
+    // Add swipe gesture for mobile
+    attachSwipeToClose(calendlyModal, function() {
+      window.modalManager.closeModal(modalId);
+    });
+    
+    return modalId;
+  }
+  
+  // Close Calendly modal
+  function closeCalendlyModal() {
+    calendlyModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+    
+    // Don't clear the container immediately to avoid flashing during animation
+    setTimeout(() => {
+      // Only clear the modal if it's the current one that's being closed
+      // This prevents issues when rapidly opening/closing the modal
+      if (currentModalId) {
+        calendlyContainer.innerHTML = '';
+        currentModalId = null;
+      }
+    }, 300);
+  }
+  
+  // Add event listener to all Calendly buttons
   calendlyButtons.forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -666,82 +762,87 @@ queueHydration(() => {
       const calendlyURL = btn.getAttribute('data-calendly');
       if (!calendlyURL) return;
       
-      // Start loading Calendly assets
-      loadCalendly();
-      
-      // Generate unique ID for this Calendly instance
-      const calendlyModalId = generateCalendlyId();
-      
-      // Wait for Calendly to load
-      const checkCalendly = setInterval(function() {
-        if (window.Calendly) {
-          clearInterval(checkCalendly);
-          
-          // Open the Calendly popup
-          Calendly.initPopupWidget({url: calendlyURL});
-          
-          // Observe when Calendly popup appears in DOM to add it to history
-          const calendlyPopupObserver = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-              if (mutation.addedNodes.length) {
-                for (let i = 0; i < mutation.addedNodes.length; i++) {
-                  const node = mutation.addedNodes[i];
-                  
-                  if (node.classList && node.classList.contains('calendly-overlay')) {
-                    // Found the Calendly modal - register it with modal manager
-                    window.modalManager.openModal(
-                      calendlyModalId, 
-                      node,
-                      // Close function
-                      function() {
-                        // Use Calendly's API to close if available
-                        if (window.Calendly && typeof window.Calendly.closePopupWidget === 'function') {
-                          window.Calendly.closePopupWidget();
-                        } else {
-                          // Fallback: remove modal directly
-                          const overlay = document.querySelector('.calendly-overlay');
-                          if (overlay) overlay.remove();
-                          
-                          const popup = document.querySelector('.calendly-popup');
-                          if (popup) popup.remove();
-                        }
-                      }
-                    );
-                    
-                    // We found what we're looking for, disconnect observer
-                    calendlyPopupObserver.disconnect();
-                    
-                    // Add swipe gesture to close on mobile
-                    attachSwipeToClose(node, function() {
-                      window.modalManager.closeModal(calendlyModalId);
-                    });
-                  }
-                }
-              }
-            });
-          });
-          
-          // Start observing for Calendly modal insertion
-          calendlyPopupObserver.observe(document.body, { childList: true });
-          
-          // If the modal is closed natively by Calendly, update our history
-          document.addEventListener('calendly:popup:closed', function() {
-            if (window.modalManager.activeModals.some(m => m.id === calendlyModalId)) {
-              window.modalManager.closeModal(calendlyModalId);
+      // Ensure Calendly is loaded before opening modal
+      if (!window.calendlyLoaded || window.calendlyLoaded === 'loading') {
+        // Show loading indicator inside the modal
+        calendlyContainer.innerHTML = `
+          <div class="calendly-loading" style="display:flex;align-items:center;justify-content:center;height:100%;">
+            <div style="text-align:center;">
+              <div class="loading-spinner" style="margin:0 auto 20px;width:50px;height:50px;border:3px solid rgba(255,255,255,0.1);border-radius:50%;border-top-color:var(--color-primary);animation:spin 1s linear infinite;"></div>
+              <p>Loading calendar...</p>
+            </div>
+          </div>
+          <style>
+            @keyframes spin {
+              to { transform: rotate(360deg); }
             }
-          });
-        }
-      }, 100);
+          </style>
+        `;
+        
+        calendlyModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Load Calendly
+        const preloadScript = document.createElement('script');
+        preloadScript.src = 'https://assets.calendly.com/assets/external/widget.js';
+        preloadScript.async = true;
+        preloadScript.onload = () => {
+          window.calendlyLoaded = true;
+          openCalendlyModal(calendlyURL);
+        };
+        document.body.appendChild(preloadScript);
+      } else {
+        // Calendly already loaded, open modal immediately
+        openCalendlyModal(calendlyURL);
+      }
     });
   });
   
-  // Register listener for Calendly events
-  window.addEventListener('message', function(e) {
-    if (e.data.event && e.data.event.indexOf('calendly') === 0) {
-      console.log('Calendly event:', e.data.event);
-      // Could handle specific Calendly events here if needed
+  // Close modal when close button is clicked
+  calendlyModalClose.addEventListener('click', () => {
+    // Find the active Calendly modal ID from the stack
+    const activeCalendlyModal = window.modalManager.activeModals.find(modal => 
+      modal.element === calendlyModal
+    );
+    
+    if (activeCalendlyModal) {
+      window.modalManager.closeModal(activeCalendlyModal.id);
     }
   });
+  
+  // Close modal when clicking outside content
+  calendlyModal.addEventListener('click', (e) => {
+    if (e.target === calendlyModal) {
+      const activeCalendlyModal = window.modalManager.activeModals.find(modal => 
+        modal.element === calendlyModal
+      );
+      
+      if (activeCalendlyModal) {
+        window.modalManager.closeModal(activeCalendlyModal.id);
+      }
+    }
+  });
+  
+  // Handle escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && calendlyModal.classList.contains('active')) {
+      const activeCalendlyModal = window.modalManager.activeModals.find(modal => 
+        modal.element === calendlyModal
+      );
+      
+      if (activeCalendlyModal) {
+        window.modalManager.closeModal(activeCalendlyModal.id);
+      }
+    }
+  });
+  
+  // Preload Calendly after a short delay once the page is loaded
+  // This ensures we don't block initial page rendering
+  if (typeof requestIdleCallback !== 'undefined') {
+    requestIdleCallback(() => preloadCalendly(), { timeout: 3000 });
+  } else {
+    setTimeout(preloadCalendly, 3000);
+  }
 }, 'important');
 
 // Important: Handle video testimonials with modal - optimized loading with back button support
