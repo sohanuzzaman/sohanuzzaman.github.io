@@ -595,8 +595,8 @@
     top: -2px;   /* Changed back to -2px for thinner border */
     width: calc(100% + 4px);  /* Changed back to 4px for thinner border */
     height: calc(100% + 4px); /* Changed back to 4px for thinner border */
-    /* Increased radius from 250px to 400px so most of the border is visible when hovering over center */
-    background: radial-gradient(400px circle at var(--x, 150px) var(--y, 100px), 
+    /* Increased radius from 400px to 600px for a larger effect */
+    background: radial-gradient(600px circle at var(--x, 150px) var(--y, 100px), 
                 rgba(253, 216, 53, 0.9) 0%, 
                 rgba(253, 216, 53, 0.4) 20%,
                 transparent 40%);
@@ -725,7 +725,6 @@
   .timeline-item-wrapper {
     position: relative;
     margin-bottom: 3rem;
-    cursor: pointer;
   }
   
   .timeline-item-wrapper:before {
@@ -736,7 +735,8 @@
     top: -2px;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
-    background: radial-gradient(400px circle at var(--x, 150px) var(--y, 100px), 
+    /* Increased radius from 400px to 600px for a larger effect */
+    background: radial-gradient(600px circle at var(--x, 150px) var(--y, 100px), 
                 rgba(253, 216, 53, 0.9) 0%, 
                 rgba(253, 216, 53, 0.4) 20%,
                 transparent 40%);
@@ -756,6 +756,41 @@
     position: relative;
     padding-left: 5rem;
     z-index: 1;
+  }
+  
+  /* Timeline content wrapper with gradient border effect */
+  .timeline-content-wrapper {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    width: 100%;
+    z-index: 1;
+    overflow: visible;
+  }
+  
+  .timeline-content-wrapper:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    /* Increased radius from 600px to maintain consistency */
+    background: radial-gradient(600px circle at var(--x, 150px) var(--y, 100px), 
+                rgba(253, 216, 53, 0.9) 0%, 
+                rgba(253, 216, 53, 0.4) 20%,
+                transparent 40%);
+    border-radius: calc(var(--border-radius-lg) + 2px);
+    z-index: -1;
+    opacity: var(--opacity, 0);
+    transition: opacity 0.2s ease;
+    will-change: opacity, background;
+    box-shadow: 0 0 10px rgba(253, 216, 53, 0.3);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
   }
   
   /* Testimonial Section */
@@ -824,7 +859,8 @@
     top: -2px;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
-    background: radial-gradient(400px circle at var(--x, 150px) var(--y, 100px), 
+    /* Increased radius from 400px to 600px for a larger effect */
+    background: radial-gradient(600px circle at var(--x, 150px) var(--y, 100px), 
                 rgba(253, 216, 53, 0.9) 0%, 
                 rgba(253, 216, 53, 0.4) 20%,
                 transparent 40%);
@@ -1424,6 +1460,14 @@
     .header-container {
       justify-content: center;
     }
+
+    .service-card-wrapper:before,
+    .timeline-item-wrapper:before,
+    .testimonial-card-wrapper:before {
+      /* Disable the desktop hover effect on mobile */
+      --opacity: 0 !important;
+      transition: none;
+    }
   }
   
   @media (max-width: 576px) {
@@ -1558,4 +1602,36 @@
   
   .video-wrapper:hover {
     transform: scale(1.02);
+  }
+
+  /* Mobile Gradient Animation for elements in viewport */
+  @keyframes gradientBorderSweep {
+    0% {
+      background: linear-gradient(90deg, 
+                  rgba(253, 216, 53, 0.9) 0%, 
+                  rgba(253, 216, 53, 0.4) 20%,
+                  transparent 40%) left/300% 100%;
+      background-repeat: no-repeat;
+    }
+    100% {
+      background: linear-gradient(90deg, 
+                  rgba(253, 216, 53, 0.9) 0%, 
+                  rgba(253, 216, 53, 0.4) 20%,
+                  transparent 40%) right/300% 100%;
+      background-repeat: no-repeat;
+    }
+  }
+  
+  .mobile-glow-active:before {
+    opacity: 1 !important;
+    background: linear-gradient(90deg, 
+                rgba(253, 216, 53, 0.9) 0%, 
+                rgba(253, 216, 53, 0.4) 20%,
+                transparent 40%);
+    /* Animation is now 3.5s (slower) */
+    animation: gradientBorderSweep 3.5s ease-in-out infinite alternate;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
   }

@@ -204,8 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Gradient hover effect for all wrapper elements (service cards, timeline items, testimonials)
-  const allWrapperElements = document.querySelectorAll('.service-card-wrapper, .timeline-item-wrapper, .testimonial-card-wrapper');
+  // Gradient hover effect for all wrapper elements
+  const allWrapperElements = document.querySelectorAll(
+    '.service-card-wrapper, .testimonial-card-wrapper, .timeline-content-wrapper'
+  );
   
   if (allWrapperElements.length > 0) {
     document.addEventListener('mousemove', (e) => {
@@ -246,6 +248,38 @@ document.addEventListener('DOMContentLoaded', function() {
           element.style.setProperty('--opacity', '0');
         }
       });
+    });
+  }
+
+  // Mobile viewport detection for gradient border effect
+  const isMobile = window.innerWidth <= 768;
+  
+  // Only initialize the effect if on mobile
+  if (isMobile) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        // When element is in the middle of the viewport
+        if (entry.isIntersecting) {
+          // Add delay based on the element's position
+          setTimeout(() => {
+            entry.target.classList.add('mobile-glow-active');
+            
+            // Remove the class after animation completes (plus delay)
+            setTimeout(() => {
+              entry.target.classList.remove('mobile-glow-active');
+            }, 5000); // Animation runs for 3.5s x 2 iterations = 7s, but we'll stop earlier
+          }, index * 300); // Add a 300ms delay for each consecutive element
+        }
+      });
+    }, {
+      root: null, // viewport
+      rootMargin: '-10% 0px', // Only trigger when element is mostly in viewport
+      threshold: 0.7 // Element must be 70% visible
+    });
+    
+    // Observe all wrapper elements
+    allWrapperElements.forEach(element => {
+      observer.observe(element);
     });
   }
 
