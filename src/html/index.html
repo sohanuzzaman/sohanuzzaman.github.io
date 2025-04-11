@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohan Solutions | Digital Strategy & Automation</title>
+  
+  <!-- Performance optimization: Add meta description for SEO -->
+  <meta name="description" content="Mohan Solutions provides digital strategy and automation services to help businesses streamline operations and grow.">
+  
+  <!-- SEO meta tags -->
+  <meta name="author" content="Mohan Sohanuzzaman">
+  <meta name="keywords" content="digital strategy, automation, business automation, digital transformation, business systems">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sohanuzzaman.com/">
+  
+  <!-- Open Graph / Facebook meta tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sohanuzzaman.com/">
+  <meta property="og:title" content="Mohan Solutions | Digital Strategy & Automation">
+  <meta property="og:description" content="Transform your business with strategic automation solutions that save time and drive growth.">
+  <meta property="og:image" content="https://sohanuzzaman.com/images/og_image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Mohan Solutions">
+  <meta property="og:locale" content="en_US">
+  
+  <!-- Twitter Card meta tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sohanuzzaman.com/">
+  <meta name="twitter:title" content="Mohan Solutions | Digital Strategy & Automation">
+  <meta name="twitter:description" content="Transform your business with strategic automation solutions that save time and drive growth.">
+  <meta name="twitter:image" content="https://sohanuzzaman.com/images/og_image.png">
+  <meta name="twitter:creator" content="@mohan_s94">
+  
+  <!-- Preconnect to critical domains -->
+  <meta name="theme-color" content="#0f172a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="../images/Mohan1.webp" as="image" fetchpriority="high" type="image/webp">
+  <link rel="preload" href="../images/mohan_logo.webp" as="image" type="image/webp">
+  <link rel="preload" href="../css/critical.css" as="style">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="../icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../icons/favicon-16x16.png">
+  <link rel="manifest" href="../site.webmanifest">
+  
+  <!-- Critical CSS inlined for faster rendering -->
+  <link rel="stylesheet" href="../css/critical.css">
+  
+  <!-- Fonts - load with minimal blocking -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Non-critical CSS - load asynchronously -->
+  <link rel="stylesheet" href="../css/styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="../css/styles.css"></noscript>
+  
+  <!-- Icons - load only necessary icons asynchronously -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.min.css"></noscript>
+
+  <!-- Add a small inline script to enable progressive enhancement -->
+  <script>
+    // Enable modern JS features
+    document.documentElement.classList.remove('no-js');
+    
+    // Add support for native lazy-loading where available
+    if ('loading' in HTMLImageElement.prototype) {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      images.forEach(img => {
+        img.src = img.dataset.src;
+      });
+    } else {
+      // If native lazy loading is not supported, consider loading a polyfill
+      // lazySizes is a great option: https://github.com/aFarkas/lazysizes
+    }
+  </script>
+  
+  <!-- Add gsap for smooth animations - deferred loading -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Add Lottie animation library - load async -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" async></script>
+
+  <!-- Wistia video integration - load on demand -->
+  <script>
+    // Will be initialized when a video is clicked
+    let wistiaLoaded = false;
+    function loadWistia() {
+      if (!wistiaLoaded) {
+        const wistiaScript = document.createElement('script');
+        wistiaScript.src = 'https://fast.wistia.com/assets/external/E-v1.js';
+        wistiaScript.async = true;
+        document.body.appendChild(wistiaScript);
+        wistiaLoaded = true;
+      }
+    }
+  </script>
+
+  <!-- Custom script - minified version for better performance -->
+  <script src="../js/scripts.js" defer></script>
+</head>
+<body>
+  <!-- Noise overlay for texture -->
+  <div class="noise-overlay"></div>
+
+  <!-- Gradient background -->
+  <div class="gradient-bg">
+    <div class="gradient-shape shape1"></div>
+    <div class="gradient-shape shape2"></div>
+  </div>
+  
+  <!-- Header with simplified menu -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <img src="../images/mohan_logo.webp" alt="Mohan Logo" width="120" height="32">
+      </a>
+      <a href="#" class="button button-primary book-call-button" data-calendly="https://calendly.com/mohan94/15min">
+        Book a Call
+        <i class="ri-calendar-line"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section - optimized for above the fold -->
+  <section class="hero" id="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge animate-item">
+          <span>Digital Strategist & Automation Expert</span>
+        </div>
+        <h1 class="hero-title animate-item">
+          Elevate Your <span class="highlight">Digital Strategy</span> to the Next Level
+        </h1>
+        <p class="hero-subtitle animate-item">
+          <span class="text-accent">Bold Strategies.</span> <span class="text-accent">Seamless Automation.</span> <span class="text-accent">Real Results.</span>
+        </p>
+        <p class="hero-description animate-item">
+          Your ideas deserve more than just a plan—they deserve to become powerful, automated realities. I'm Mohan, a digital strategist who builds systems that don't just work—they dominate.
+        </p>
+        <div class="hero-buttons animate-item">
+          <a href="#" class="button button-primary" data-calendly="https://calendly.com/mohan94/15min">
+            Book a Free Strategy Call
+            <i class="ri-calendar-line"></i>
+          </a>
+          <a href="#services" class="button button-secondary">
+            See My Services
+            <i class="ri-eye-line"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image-container">
+        <div class="image-wrapper animate-item">
+          <div class="accent-shape"></div>
+          <div class="image-mask">
+            <picture>
+              <source srcset="../images/Mohan1-400w.webp 400w, ../images/Mohan1.webp 600w" type="image/webp" sizes="(max-width: 768px) 400px, 600px">
+              <img src="../images/Mohan1.webp" alt="Mohan" class="hero-image" width="600" height="550" fetchpriority="high" decoding="async">
+            </picture>
+          </div>
+          <div class="experience-badge">
+            <span class="number">10+</span>
+            <span class="text">Years Experience</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <i class="ri-arrow-down-line"></i>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag animate-item">About Me</span>
+        <h2 class="section-title animate-item">Who Am I?</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-image-container">
+          <div class="about-image animate-item">
+            <picture>
+              <source srcset="../images/mohan2-300w.webp 300w, ../images/mohan2.webp 500w" type="image/webp" sizes="(max-width: 768px) 300px, 500px">
+              <img src="../images/mohan2.webp" alt="About Mohan" loading="lazy" width="500" height="500">
+            </picture>
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="paragraph animate-item">
+            I'm not just a developer or a strategist. I'm your partner in building digital systems that empower your business to thrive. I take your vision and craft it into a streamlined, automated, and profitable reality.
+          </p>
+          <p class="paragraph animate-item">
+            My approach blends cutting-edge technology with a human-centric mindset, ensuring that your business isn't just efficient—it's impactful.
+          </p>
+          <p class="paragraph animate-item">
+            Coming from humble beginnings, I've forged a path of resilience, innovation, and strategic thinking. This mindset defines how I work and why my clients trust me to transform their businesses.
+          </p>
+          <div class="stats-container animate-item">
+            <div class="stat-item">
+              <span class="stat-value">98%</span>
+              <span class="stat-label">Client Satisfaction</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">90+</span>
+              <span class="stat-label">Projects Delivered</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">100%</span>
+              <span class="stat-label">Results Oriented</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag animate-item">Services</span>
+        <h2 class="section-title animate-item">Why Work With Me?</h2>
+      </div>
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="service-card-inner">
+            <div class="service-icon">
+              <i class="ri-focus-3-line"></i>
+            </div>
+            <h3 class="service-title">Precision and Clarity</h3>
+            <p class="service-description">No vague concepts—just clear, actionable strategies designed to make an impact.</p>
+          </div>
+        </div>
+        
+        <!-- Service 2 -->
+        <div class="service-card-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="service-card-inner">
+            <div class="service-icon">
+              <i class="ri-flashlight-line"></i>
+            </div>
+            <h3 class="service-title">High-Impact Automation</h3>
+            <p class="service-description">Say goodbye to manual work. I build systems that drive growth while you focus on what truly matters.</p>
+          </div>
+        </div>
+        
+        <!-- Service 3 -->
+        <div class="service-card-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="service-card-inner">
+            <div class="service-icon">
+              <i class="ri-shield-star-line"></i>
+            </div>
+            <h3 class="service-title">Battle-Tested Resilience</h3>
+            <p class="service-description">From humble beginnings to global success, I know what it takes to overcome challenges and build from the ground up.</p>
+          </div>
+        </div>
+        
+        <!-- Service 4 -->
+        <div class="service-card-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="service-card-inner">
+            <div class="service-icon">
+              <i class="ri-team-line"></i>
+            </div>
+            <h3 class="service-title">Strategic Partnership</h3>
+            <p class="service-description">I don't just execute tasks—I provide strategic guidance that aligns with your long-term vision.</p>
+          </div>
+        </div>
+        
+        <!-- Service 5 -->
+        <div class="service-card-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="service-card-inner">
+            <div class="service-icon">
+              <i class="ri-line-chart-line"></i>
+            </div>
+            <h3 class="service-title">Proven Success</h3>
+            <p class="service-description">Clients see tangible results—more time, more revenue, more freedom.</p>
+          </div>
+        </div>
+        
+        <!-- Service 6 -->
+        <div class="service-card-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="service-card-inner">
+            <div class="service-icon">
+              <i class="ri-customer-service-2-line"></i>
+            </div>
+            <h3 class="service-title">Ongoing Support</h3>
+            <p class="service-description">Your success is my priority long after project completion with continued guidance and optimization.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="section process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag animate-item">Working Process</span>
+        <h2 class="section-title animate-item">The Mohan Process</h2>
+        <p class="section-description animate-item">Your Path to Success</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="timeline-item">
+            <div class="timeline-number">01</div>
+            <div class="timeline-content-wrapper" style="--x: 150px; --y: 100px; --opacity: 0;">
+              <div class="timeline-content">
+                <h3>Discovery & Strategy Call</h3>
+                <p>Understand your vision, challenges, and goals. Identify opportunities to streamline and automate. Develop a tailored game plan that suits your needs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="timeline-item">
+            <div class="timeline-number">02</div>
+            <div class="timeline-content-wrapper" style="--x: 150px; --y: 100px; --opacity: 0;">
+              <div class="timeline-content">
+                <h3>Strategic Implementation</h3>
+                <p>Design intuitive systems with a focus on user experience. Integrate automation that saves time and reduces error. Test rigorously to ensure flawless performance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="timeline-item">
+            <div class="timeline-number">03</div>
+            <div class="timeline-content-wrapper" style="--x: 150px; --y: 100px; --opacity: 0;">
+              <div class="timeline-content">
+                <h3>Launch & Optimize</h3>
+                <p>Deploy with confidence and track the results. Continuously fine-tune for maximum impact. Provide ongoing support to ensure sustained success.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section with Videos -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag animate-item">Testimonials</span>
+        <h2 class="section-title animate-item">Video Success Stories</h2>
+        <p class="section-description animate-item">Hear directly from clients about their experience</p>
+        <div class="video-counter animate-item">
+          <span class="counter-number">3</span>
+          <span class="counter-text">Video Testimonials</span>
+        </div>
+      </div>
+      
+      <!-- Video Testimonial Grid -->
+      <div class="video-testimonial-grid">
+        <!-- Video 1 -->
+        <div class="video-testimonial-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="video-testimonial animate-item">
+            <div class="video-wrapper" data-video-id="gnhiqjwj3a">
+              <div class="video-overlay">
+                <button class="play-button" aria-label="Play video testimonial" onclick="loadWistia();">
+                  <i class="ri-play-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Video 2 -->
+        <div class="video-testimonial-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="video-testimonial animate-item">
+            <div class="video-wrapper" data-video-id="uzotbt6u9q">
+              <div class="video-overlay">
+                <button class="play-button" aria-label="Play video testimonial" onclick="loadWistia();">
+                  <i class="ri-play-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Video 3 -->
+        <div class="video-testimonial-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="video-testimonial animate-item">
+            <div class="video-wrapper" data-video-id="q4y65yhq5x">
+              <div class="video-overlay">
+                <button class="play-button" aria-label="Play video testimonial" onclick="loadWistia();">
+                  <i class="ri-play-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Text Testimonials (Optional - Keep or Remove) -->
+      <div class="section-subheader animate-item">
+        <h3>What Clients Say</h3>
+      </div>
+      
+      <div class="testimonial-slider">
+        <div class="testimonial-card-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="testimonial-item">
+            <div class="testimonial-content">
+              <i class="ri-double-quotes-l quote-icon"></i>
+              <p>A million stars. Mohan didn't just fix my systems—he made them thrive. After hiring two other experts who couldn't deliver, Mohan transformed my ConvertKit setup.</p>
+            </div>
+            <div class="testimonial-author">
+              <picture>
+                <source srcset="../images/client1-small.webp" type="image/webp">
+                <img src="../images/client1-small.webp" alt="Client" class="author-image" width="50" height="50" loading="lazy">
+              </picture>
+              <div class="author-details">
+                <h4>Upwork Client</h4>
+                <p>September 2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card-wrapper animate-item" style="--x: 150px; --y: 100px; --opacity: 0;">
+          <div class="testimonial-item">
+            <div class="testimonial-content">
+              <i class="ri-double-quotes-l quote-icon"></i>
+              <p>Mohan is highly organized and proactive. His attention to detail and ability to solve complex problems made our project a success. A true professional who always delivers!</p>
+            </div>
+            <div class="testimonial-author">
+              <picture>
+                <source srcset="../images/client2-small.webp" type="image/webp">
+                <img src="../images/client2-small.webp" alt="Client" class="author-image" width="50" height="50" loading="lazy">
+              </picture>
+              <div class="author-details">
+                <h4>Upwork Client</h4>
+                <p>July 2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta" id="contact">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title animate-item">Ready to Transform Your Business?</h2>
+        <p class="cta-description animate-item">Your breakthrough moment is now. Let's make your vision a reality.</p>
+        <a href="#" class="button button-primary animate-item" data-calendly="https://calendly.com/mohan94/15min">
+          Book a Free Strategy Call
+          <i class="ri-calendar-line"></i>
+        </a>
+      </div>
+      <div class="cta-graphic animate-item">
+        <div id="gsap-animation" class="gsap-animation-container">
+          <div class="anim-circle"></div>
+          <div class="anim-square"></div>
+          <div class="anim-triangle"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <picture>
+            <source srcset="../images/mohan_logo.webp" type="image/webp">
+            <img src="../images/mohan_logo.webp" alt="Mohan Logo" width="120" height="32" loading="lazy">
+          </picture>
+          <p>Digital Strategy & Automation</p>
+        </div>
+        
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="https://twitter.com/mohan_s94" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+            <i class="ri-twitter-x-fill"></i>
+            </a>
+            <a href="https://github.com/sohanuzzaman" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <i class="ri-github-fill"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mohan-sohanuzzaman/" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-linkedin-fill"></i>
+            </a>
+            <a href="https://www.upwork.com/freelancers/~01c2b05974c0cfec0a" class="social-icon" aria-label="Upwork" target="_blank" rel="noopener noreferrer">
+            <i class="ri-briefcase-4-line"></i>
+            </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Mohan Solutions. All rights reserved.</p>
+        <a href="#" class="scroll-to-top" aria-label="Scroll to top">
+          <i class="ri-arrow-up-line"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Floating contact button -->
+  <div class="floating-button">
+    <button class="button button-action" aria-label="Book a call" data-calendly="https://calendly.com/mohan94/15min">
+      <i class="ri-calendar-line"></i>
+    </button>
+  </div>
+
+  <!-- Custom Calendly Modal -->
+  <div class="custom-modal" id="calendlyModal">
+    <div class="modal-content calendly-modal-content">
+      <button class="modal-close" id="calendlyModalClose">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="calendly-container" id="calendlyContainer">
+        <!-- Calendly will be inserted here dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="modal-container" id="modalVideoContainer"></div>
+    </div>
+  </div>
+
+  <!-- Add performance metrics tracking -->
+  <script>
+    // Performance metrics reporting 
+    if ('PerformanceObserver' in window) {
+      // Create a performance observer to track important metrics
+      try {
+        const observer = new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            // You can send these metrics to your analytics platform
+            console.log(`[Performance] ${entry.name}: ${entry.startTime.toFixed(0)}ms`);
+          });
+        });
+        
+        // Observe various performance metrics
+        observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+        
+      } catch (e) {
+        console.error('Performance observer error:', e);
+      }
+    }
+  </script>
+
+  <!-- Custom script - minified version for better performance -->
+  <script src="../js/scripts.js" defer></script>
+</body>
+</html>
