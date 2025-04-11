@@ -1,0 +1,35 @@
+{
+  "name": "mohan-solutions-website",
+  "version": "1.0.0",
+  "description": "Mohan Solutions - Digital Strategy & Automation Portfolio Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "bash ./src/preview.sh",
+    "build": "bash ./build.sh",
+    "build:dev": "bash ./build.sh --dev",
+    "setup": "bash ./src/setup-dev.sh",
+    "imagemin": "imagemin original_images/* --out-dir=src/images",
+    "deploy": "bash ./build.sh && echo 'Ready to deploy! Files are in the root directory.'"
+  },
+  "author": "Mohan Sohanuzzaman",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "clean-css-cli": "^5.6.2",
+    "html-minifier": "^4.0.0",
+    "imagemin-cli": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "uglify-js": "^3.17.4"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead",
+    "not IE 11"
+  ]
+}
