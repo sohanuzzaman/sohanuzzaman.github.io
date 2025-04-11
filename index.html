@@ -8,301 +8,32 @@
   <!-- Performance optimization: Add meta description for SEO -->
   <meta name="description" content="Mohan Solutions provides digital strategy and automation services to help businesses streamline operations and grow.">
   
+  <!-- Preconnect to critical domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
   <!-- Preload critical assets -->
-  <link rel="preload" href="Mohan1.jpg" as="image">
-  <link rel="preload" href="mohan_logo.png" as="image">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" as="style">
+  <link rel="preload" href="webp_converted/Mohan1.webp" as="image" fetchpriority="high" type="image/webp">
+  <link rel="preload" href="webp_converted/mohan_logo.webp" as="image" type="image/webp">
+  <link rel="preload" href="critical.css" as="style">
   
   <!-- Favicons -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   
   <!-- Critical CSS inlined for faster rendering -->
-  <style>
-    /* Critical Path CSS - Only styles needed for above-the-fold content */
-:root {
-  /* Essential Colors */
-  --color-primary: #fdd835;
-  --color-primary-light: #ffff72;
-  --color-primary-dark: #c6a700;
-  --color-dark: #0f172a;
-  --color-dark-light: #1e293b;
-  --color-gray: #64748b;
-  --color-light: #f8fafc;
-  --color-white: #ffffff;
-  
-  /* Typography */
-  --font-primary: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-  
-  /* Transitions */
-  --transition-fast: 0.3s ease;
-  
-  /* Sizing */
-  --header-height: 80px;
-  --content-width: 1200px;
-  --border-radius-md: 8px;
-}
-
-/* Reset & Base Styles */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-body {
-  font-family: var(--font-primary);
-  background-color: var(--color-dark);
-  color: var(--color-light);
-  overflow-x: hidden;
-  position: relative;
-  min-height: 100vh;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Container */
-.container {
-  width: 100%;
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Background Elements */
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3C/rect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.03;
-  pointer-events: none;
-}
-
-.gradient-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.gradient-shape {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.2;
-}
-
-.shape1 {
-  top: 10%;
-  left: 5%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, var(--color-primary-light) 0%, transparent 70%);
-  opacity: 0.15;
-}
-
-.shape2 {
-  bottom: 10%;
-  right: 5%;
-  width: 40vw;
-  height: 40vw;
-  background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
-}
-
-/* Header */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  padding: 1rem 0;
-  transition: var(--transition-fast);
-  backdrop-filter: blur(10px);
-  background-color: rgba(15, 23, 42, 0.6);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.header.scrolled {
-  padding: 0.75rem 0;
-  background-color: rgba(15, 23, 42, 0.9);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo img {
-  height: 32px;
-  transition: var(--transition-fast);
-}
-
-/* Buttons */
-.button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 1.75rem;
-  border-radius: var(--border-radius-md);
-  font-weight: 600;
-  transition: var(--transition-fast);
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.button-primary {
-  background-color: var(--color-primary);
-  color: var(--color-dark);
-}
-
-/* Hero Section */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: calc(var(--header-height) + 3rem) 0 3rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-container {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  gap: 3rem;
-}
-
-.hero-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  backdrop-filter: blur(10px);
-}
-
-.hero-description {
-  font-size: 1.15rem;
-  color: var(--color-gray);
-  margin-bottom: 2.5rem;
-  max-width: 650px;
-}
-
-.text-accent {
-  color: var(--color-primary);
-}
-
-.highlight {
-  position: relative;
-  display: inline-block;
-}
-
-.highlight::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0.1em;
-  height: 0.3em;
-  width: 100%;
-  background-color: rgba(253, 216, 53, 0.3);
-  z-index: -1;
-}
-
-/* Loading state */
-.no-js .animate-item {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* Animation placeholders */
-.animate-item {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.animate-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Temporary fix to see content */
-.animate-item {
-  opacity: 1;
-  transform: none;
-}
-
-/* Media Queries for the critical elements */
-@media (max-width: 992px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .hero-image-container {
-    order: -1;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-container {
-    padding-top: 2rem;
-  }
-  
-  .hero-title {
-    font-size: clamp(2rem, 8vw, 3rem);
-  }
-}
-  </style>
+  <link rel="stylesheet" href="critical.css">
   
   <!-- Fonts - load with minimal blocking -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Non-critical CSS - load asynchronously -->
-  <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="styles.css"></noscript>
+  <link rel="stylesheet" href="dist/styles.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="dist/styles.min.css"></noscript>
   
-  <!-- Icons - load asynchronously -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"></noscript>
+  <!-- Icons - load only necessary icons asynchronously -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.min.css"></noscript>
 
   <!-- Add a small inline script to enable progressive enhancement -->
   <script>
@@ -399,8 +130,8 @@ a {
           <div class="accent-shape"></div>
           <div class="image-mask">
             <picture>
-              <source srcset="webp_converted/Mohan1.webp" type="image/webp">
-              <img src="Mohan1.jpg" alt="Mohan" class="hero-image" width="600" height="550" fetchpriority="high" decoding="async">
+              <source srcset="webp_converted/Mohan1-400w.webp 400w, webp_converted/Mohan1.webp 600w" type="image/webp" sizes="(max-width: 768px) 400px, 600px">
+              <img src="webp_converted/Mohan1.webp" alt="Mohan" class="hero-image" width="600" height="550" fetchpriority="high" decoding="async">
             </picture>
           </div>
           <div class="experience-badge">
@@ -426,7 +157,10 @@ a {
       <div class="about-content">
         <div class="about-image-container">
           <div class="about-image animate-item">
-            <img src="webp_converted/mohan2.webp" alt="About Mohan" loading="lazy" width="500" height="500">
+            <picture>
+              <source srcset="webp_converted/mohan2-300w.webp 300w, webp_converted/mohan2.webp 500w" type="image/webp" sizes="(max-width: 768px) 300px, 500px">
+              <img src="webp_converted/mohan2.webp" alt="About Mohan" loading="lazy" width="500" height="500">
+            </picture>
           </div>
         </div>
         <div class="about-text">
@@ -653,8 +387,8 @@ a {
             </div>
             <div class="testimonial-author">
               <picture>
-                <source srcset="webp_converted/client1.webp" type="image/webp">
-                <img src="client1.png" alt="Client" class="author-image" width="50" height="50" loading="lazy">
+                <source srcset="webp_converted/client1-small.webp" type="image/webp">
+                <img src="webp_converted/client1-small.webp" alt="Client" class="author-image" width="50" height="50" loading="lazy">
               </picture>
               <div class="author-details">
                 <h4>Upwork Client</h4>
@@ -672,8 +406,8 @@ a {
             </div>
             <div class="testimonial-author">
               <picture>
-                <source srcset="webp_converted/client2.webp" type="image/webp">
-                <img src="client2.png" alt="Client" class="author-image" width="50" height="50" loading="lazy">
+                <source srcset="webp_converted/client2-small.webp" type="image/webp">
+                <img src="webp_converted/client2-small.webp" alt="Client" class="author-image" width="50" height="50" loading="lazy">
               </picture>
               <div class="author-details">
                 <h4>Upwork Client</h4>
@@ -714,7 +448,7 @@ a {
         <div class="footer-logo">
           <picture>
             <source srcset="webp_converted/mohan_logo.webp" type="image/webp">
-            <img src="mohan_logo.png" alt="Mohan Logo" width="120" height="32" loading="lazy">
+            <img src="webp_converted/mohan_logo.webp" alt="Mohan Logo" width="120" height="32" loading="lazy">
           </picture>
           <p>Digital Strategy & Automation</p>
         </div>
@@ -795,7 +529,7 @@ a {
     }
   </script>
 
-  <!-- Custom script - loaded at the end for best performance -->
-  <script src="scripts.js" defer></script>
+  <!-- Custom script - minified version for better performance -->
+  <script src="dist/scripts.min.js" defer></script>
 </body>
 </html>
