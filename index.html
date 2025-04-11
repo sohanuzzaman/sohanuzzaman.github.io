@@ -85,7 +85,7 @@ a {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3C/rect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.03;
   pointer-events: none;
 }
@@ -358,7 +358,7 @@ a {
   <header class="header">
     <div class="container header-container">
       <a href="#" class="logo">
-        <img src="mohan_logo.png" alt="Mohan Logo">
+        <img src="webp_converted/mohan_logo.webp" alt="Mohan Logo" width="120" height="32">
       </a>
       <a href="#" class="button button-primary book-call-button" data-calendly="https://calendly.com/mohan94/15min">
         Book a Call
@@ -398,7 +398,10 @@ a {
         <div class="image-wrapper animate-item">
           <div class="accent-shape"></div>
           <div class="image-mask">
-            <img src="Mohan1.jpg" alt="Mohan" class="hero-image">
+            <picture>
+              <source srcset="webp_converted/Mohan1.webp" type="image/webp">
+              <img src="Mohan1.jpg" alt="Mohan" class="hero-image" width="600" height="550" fetchpriority="high" decoding="async">
+            </picture>
           </div>
           <div class="experience-badge">
             <span class="number">10+</span>
@@ -421,6 +424,11 @@ a {
         <h2 class="section-title animate-item">Who Am I?</h2>
       </div>
       <div class="about-content">
+        <div class="about-image-container">
+          <div class="about-image animate-item">
+            <img src="webp_converted/mohan2.webp" alt="About Mohan" loading="lazy" width="500" height="500">
+          </div>
+        </div>
         <div class="about-text">
           <p class="paragraph animate-item">
             I'm not just a developer or a strategist. I'm your partner in building digital systems that empower your business to thrive. I take your vision and craft it into a streamlined, automated, and profitable reality.
@@ -444,11 +452,6 @@ a {
               <span class="stat-value">100%</span>
               <span class="stat-label">Results Oriented</span>
             </div>
-          </div>
-        </div>
-        <div class="about-image-container">
-          <div class="about-image animate-item">
-            <img src="mohan2.JPG" alt="About Mohan" loading="lazy">
           </div>
         </div>
       </div>
@@ -649,7 +652,10 @@ a {
               <p>A million stars. Mohan didn't just fix my systems—he made them thrive. After hiring two other experts who couldn't deliver, Mohan transformed my ConvertKit setup.</p>
             </div>
             <div class="testimonial-author">
-              <img src="client1.png" alt="Client" class="author-image">
+              <picture>
+                <source srcset="webp_converted/client1.webp" type="image/webp">
+                <img src="client1.png" alt="Client" class="author-image" width="50" height="50" loading="lazy">
+              </picture>
               <div class="author-details">
                 <h4>Upwork Client</h4>
                 <p>September 2023</p>
@@ -665,7 +671,10 @@ a {
               <p>Mohan is highly organized and proactive. His attention to detail and ability to solve complex problems made our project a success. A true professional who always delivers!</p>
             </div>
             <div class="testimonial-author">
-              <img src="client2.png" alt="Client" class="author-image">
+              <picture>
+                <source srcset="webp_converted/client2.webp" type="image/webp">
+                <img src="client2.png" alt="Client" class="author-image" width="50" height="50" loading="lazy">
+              </picture>
               <div class="author-details">
                 <h4>Upwork Client</h4>
                 <p>July 2023</p>
@@ -703,7 +712,10 @@ a {
     <div class="container">
       <div class="footer-top">
         <div class="footer-logo">
-          <img src="mohan_logo.png" alt="Mohan Logo">
+          <picture>
+            <source srcset="webp_converted/mohan_logo.webp" type="image/webp">
+            <img src="mohan_logo.png" alt="Mohan Logo" width="120" height="32" loading="lazy">
+          </picture>
           <p>Digital Strategy & Automation</p>
         </div>
         

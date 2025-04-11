@@ -521,10 +521,31 @@
     align-items: center;
   }
   
+  /* Changed the order of image and text on desktop */
   .about-text {
+    order: 2;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+  }
+  
+  .about-image-container {
+    order: 1;
+  }
+  
+  @media (max-width: 992px) {
+    .about-content {
+      grid-template-columns: 1fr;
+    }
+    
+    /* On mobile, maintain original order with text first */
+    .about-text {
+      order: 1;
+    }
+    
+    .about-image-container {
+      order: 2;
+    }
   }
   
   .paragraph {
