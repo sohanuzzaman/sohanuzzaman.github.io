@@ -53,6 +53,9 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
       setIsOpen(true);
       setIsLoading(!isPreloaded); // Show loading if not preloaded
       document.body.style.overflow = 'hidden';
+      
+      // Add to browser history for proper back button behavior
+      window.history.pushState({ modalOpen: true, modalType: 'calendly' }, '', window.location.href);
     };
 
     window.addEventListener('openCalendly', handleOpenCalendly);
@@ -66,7 +69,28 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
   const closeModal = () => {
     setIsOpen(false);
     document.body.style.overflow = 'auto';
+    
+    // Go back in history if we pushed a state when opening
+    if (window.history.state?.modalOpen && window.history.state?.modalType === 'calendly') {
+      window.history.back();
+    }
   };
+
+  // Handle browser back button
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (isOpen && (!event.state?.modalOpen || event.state?.modalType !== 'calendly')) {
+        // User pressed back button while modal was open - just close without pushing to history
+        setIsOpen(false);
+        document.body.style.overflow = 'auto';
+      }
+    };
+
+    if (isOpen) {
+      window.addEventListener('popstate', handlePopState);
+      return () => window.removeEventListener('popstate', handlePopState);
+    }
+  }, [isOpen]);
 
   // Handle escape key
   useEffect(() => {

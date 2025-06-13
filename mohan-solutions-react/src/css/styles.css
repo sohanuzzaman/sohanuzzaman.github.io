@@ -491,7 +491,9 @@ cursor: pointer;
   
   .button-action:hover {
     transform: scale(1.1);
-    background-color: var(--color-primary-light);
+    background-color: var(--color-primary);
+    filter: brightness(0.9) contrast(1.1);
+    box-shadow: 0 8px 25px rgba(253, 216, 53, 0.5);
   }
   
   .floating-button {
