@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohan Solutions | Digital Strategy & Automation</title>
+  
+  <!-- Performance optimization: Add meta description for SEO -->
+  <meta name="description" content="Mohan Solutions provides digital strategy and automation services to help businesses streamline operations and grow.">
+  
+  <!-- SEO meta tags -->
+  <meta name="author" content="Mohan Sohanuzzaman">
+  <meta name="keywords" content="digital strategy, automation, business automation, digital transformation, business systems">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sohanuzzaman.com/">
+  
+  <!-- Open Graph / Facebook meta tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sohanuzzaman.com/">
+  <meta property="og:title" content="Mohan Solutions | Digital Strategy & Automation">
+  <meta property="og:description" content="Transform your business with strategic automation solutions that save time and drive growth.">
+  <meta property="og:image" content="https://sohanuzzaman.com/images/og_image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Mohan Solutions">
+  <meta property="og:locale" content="en_US">
+  
+  <!-- Twitter Card meta tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sohanuzzaman.com/">
+  <meta name="twitter:title" content="Mohan Solutions | Digital Strategy & Automation">
+  <meta name="twitter:description" content="Transform your business with strategic automation solutions that save time and drive growth.">
+  <meta name="twitter:image" content="https://sohanuzzaman.com/images/og_image.png">
+  <meta name="twitter:creator" content="@mohan_s94">
+  
+  <!-- Preconnect to critical domains -->
+  <meta name="theme-color" content="#0f172a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="%PUBLIC_URL%/images/Mohan1.webp" as="image" fetchpriority="high" type="image/webp">
+  <link rel="preload" href="%PUBLIC_URL%/images/mohan_logo.webp" as="image" type="image/webp">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="%PUBLIC_URL%/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/icons/favicon-16x16.png">
+  <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest">
+  
+  <!-- Fonts - load with minimal blocking -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons - load only necessary icons asynchronously -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.min.css"></noscript>
+
+  <!-- Add a small inline script to enable progressive enhancement -->
+  <script>
+    // Enable modern JS features
+    document.documentElement.classList.remove('no-js');
+    
+    // Add support for native lazy-loading where available
+    if ('loading' in HTMLImageElement.prototype) {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      images.forEach(img => {
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+        }
+      });
+    }
+  </script>
+  
+  <!-- Add gsap for smooth animations - deferred loading -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Wistia video integration - load on demand -->
+  <script>
+    // Will be initialized when a video is clicked
+    let wistiaLoaded = false;
+    window.loadWistia = function() {
+      if (!wistiaLoaded) {
+        const wistiaScript = document.createElement('script');
+        wistiaScript.src = 'https://fast.wistia.com/assets/external/E-v1.js';
+        wistiaScript.async = true;
+        document.body.appendChild(wistiaScript);
+        wistiaLoaded = true;
+      }
+    }
+  </script>
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+</html>
